@@ -44,6 +44,7 @@ namespace ProductManagement
 
         private void Frm_Order_Load(object sender, EventArgs e)
         {
+            // 
             SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM Product", "Data Source=LAPTOP-C1548M6R\\SQLEXPRESS;Initial Catalog=Product;Integrated Security=True");
             DataSet ds = new DataSet();
             da.Fill(ds, "Product");
