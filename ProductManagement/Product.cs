@@ -15,7 +15,7 @@ namespace ProductManagement
         public int ID;
         public string productName;
         public decimal productPrice;
-
+        public int units = 0;
         public Product(int ID, string productName,decimal productPrice)
         {
             this.ID = ID;

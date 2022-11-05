@@ -31,6 +31,9 @@ namespace ProductManagement
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.productBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.productDataSet = new ProductManagement.ProductDataSet();
             this.btn_insert = new System.Windows.Forms.Button();
@@ -42,9 +45,7 @@ namespace ProductManagement
             this.tb_search = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lbl_total = new System.Windows.Forms.Label();
-            this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btn_order = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productDataSet)).BeginInit();
@@ -71,6 +72,27 @@ namespace ProductManagement
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
+            // 
+            // iDDataGridViewTextBoxColumn
+            // 
+            this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
+            this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
+            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
+            this.iDDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // pNameDataGridViewTextBoxColumn
+            // 
+            this.pNameDataGridViewTextBoxColumn.DataPropertyName = "P_Name";
+            this.pNameDataGridViewTextBoxColumn.HeaderText = "P_Name";
+            this.pNameDataGridViewTextBoxColumn.Name = "pNameDataGridViewTextBoxColumn";
+            this.pNameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // pPriceDataGridViewTextBoxColumn
+            // 
+            this.pPriceDataGridViewTextBoxColumn.DataPropertyName = "P_Price";
+            this.pPriceDataGridViewTextBoxColumn.HeaderText = "P_Price";
+            this.pPriceDataGridViewTextBoxColumn.Name = "pPriceDataGridViewTextBoxColumn";
+            this.pPriceDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // productBindingSource
             // 
@@ -108,7 +130,7 @@ namespace ProductManagement
             // 
             // btn_delete
             // 
-            this.btn_delete.Location = new System.Drawing.Point(680, 119);
+            this.btn_delete.Location = new System.Drawing.Point(680, 126);
             this.btn_delete.Name = "btn_delete";
             this.btn_delete.Size = new System.Drawing.Size(128, 23);
             this.btn_delete.TabIndex = 2;
@@ -118,7 +140,7 @@ namespace ProductManagement
             // 
             // btn_reload
             // 
-            this.btn_reload.Location = new System.Drawing.Point(680, 182);
+            this.btn_reload.Location = new System.Drawing.Point(680, 187);
             this.btn_reload.Name = "btn_reload";
             this.btn_reload.Size = new System.Drawing.Size(75, 23);
             this.btn_reload.TabIndex = 3;
@@ -152,32 +174,22 @@ namespace ProductManagement
             this.lbl_total.TabIndex = 6;
             this.lbl_total.Text = "Total records:";
             // 
-            // iDDataGridViewTextBoxColumn
+            // btn_order
             // 
-            this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
-            this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
-            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
-            this.iDDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // pNameDataGridViewTextBoxColumn
-            // 
-            this.pNameDataGridViewTextBoxColumn.DataPropertyName = "P_Name";
-            this.pNameDataGridViewTextBoxColumn.HeaderText = "P_Name";
-            this.pNameDataGridViewTextBoxColumn.Name = "pNameDataGridViewTextBoxColumn";
-            this.pNameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // pPriceDataGridViewTextBoxColumn
-            // 
-            this.pPriceDataGridViewTextBoxColumn.DataPropertyName = "P_Price";
-            this.pPriceDataGridViewTextBoxColumn.HeaderText = "P_Price";
-            this.pPriceDataGridViewTextBoxColumn.Name = "pPriceDataGridViewTextBoxColumn";
-            this.pPriceDataGridViewTextBoxColumn.ReadOnly = true;
+            this.btn_order.Location = new System.Drawing.Point(680, 247);
+            this.btn_order.Name = "btn_order";
+            this.btn_order.Size = new System.Drawing.Size(75, 23);
+            this.btn_order.TabIndex = 7;
+            this.btn_order.Text = "Order";
+            this.btn_order.UseVisualStyleBackColor = true;
+            this.btn_order.Click += new System.EventHandler(this.btn_order_Click);
             // 
             // Frm_Product
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(810, 461);
+            this.Controls.Add(this.btn_order);
             this.Controls.Add(this.lbl_total);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tb_search);
@@ -214,5 +226,6 @@ namespace ProductManagement
         private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn pNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn pPriceDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Button btn_order;
     }
 }

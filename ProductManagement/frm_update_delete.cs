@@ -27,8 +27,7 @@ namespace ProductManagement
             try
             {
                 con = new SqlConnection("Data Source=LAPTOP-C1548M6R\\SQLEXPRESS;Initial Catalog=Product;Integrated Security=True");
-                cmd = new SqlCommand(@"update Product set ID=@ID, P_Name=@P_Name, P_Price=@P_Price",
-                    con);
+                cmd = new SqlCommand(@"update Product set P_Name=@P_Name, P_Price=@P_Price where ID = @ID", con);
                 cmd.CommandType = CommandType.Text;
                 cmd.Parameters.AddWithValue("@ID", int.Parse(tb_Id.Text));
                 cmd.Parameters.AddWithValue("@P_Name", tb_Name.Text);
@@ -36,7 +35,6 @@ namespace ProductManagement
                 if (con.State != ConnectionState.Open)
                     con.Open();
                 cmd.ExecuteNonQuery();
-
                 con.Close();
                 MessageBox.Show("Successfully Updated");
             }

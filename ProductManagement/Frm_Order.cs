@@ -24,6 +24,7 @@ namespace ProductManagement
         private SqlCommand cmd;
 
         private List<Product> products = new List<Product>();
+        private List<Product> tempProducts = new List<Product>();
         public int RowCount()
         {
             string stmt = @"SELECT COUNT(*) FROM Product";
@@ -44,40 +45,81 @@ namespace ProductManagement
 
         private void Frm_Order_Load(object sender, EventArgs e)
         {
-            // 
-            SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM Product", "Data Source=LAPTOP-C1548M6R\\SQLEXPRESS;Initial Catalog=Product;Integrated Security=True");
-            DataSet ds = new DataSet();
-            da.Fill(ds, "Product");
-            DataGridView dgv = new DataGridView();
-            dgv.DataSource = ds.Tables["Product"].DefaultView;
-
-            label1.Text = dgv.Rows[0].Cells[0].Value.ToString();
-            
+            ReadingRow();
         }
 
-        public Product prod;
+        
 
         private void ReadingRow(){
-            SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM Product", "Data Source=LAPTOP-C1548M6R\\SQLEXPRESS;Initial Catalog=Product;Integrated Security=True");
-            DataSet ds = new DataSet();
-            da.Fill(ds, "Product");
-            DataGridView dgv = new DataGridView();
-            dgv.DataSource = ds.Tables["Product"].DefaultView;
-
-            /* products.AddRange(new[] { 
-                 new Product(Convert.ToInt32(dgv.CurrentRow.Cells[0].Value.ToString()),dgv.CurrentRow.Cells[1].Value.ToString(), Convert.ToDecimal(dgv.CurrentRow.Cells[2].Value.ToString()))
-         }) */
-
-            for (int i = 0; i < RowCount() ; i++)
+            
+            Product prod = null;//obj null
+            using (productCon = new SqlConnection("Data Source=LAPTOP-C1548M6R\\SQLEXPRESS;Initial Catalog=Product;Integrated Security=True"))
             {
-                prod.InsertProduct(Convert.ToInt32(dgv.Rows[i].Cells[0].Value), Convert.ToString(dgv.Rows[i].Cells[1].Value), Convert.ToDecimal(dgv.Rows[i].Cells[2].Value));
-                products.Add(prod);
+                cmd = new SqlCommand(@"select ID, P_Name, P_Price from Product", productCon);
+                productCon.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    products.Add(prod = new Product(Convert.ToInt32(reader[0]), reader[1].ToString(), Convert.ToDecimal(reader[2])));
+                }
+                listBox1.Items.Clear();
+                for (int i = 0; i < RowCount(); i++)
+                {
+                    listBox1.Items.Add(products[i].ID + "\t" + products[i].productName + "\t" + products[i].productPrice);
+                }
+
+            }
+        }
+
+        private void btn_addToCart_Click(object sender, EventArgs e)
+        {
+            
+            string[] __temp = listBox1.SelectedItem.ToString().Split('\t');
+            
+
+            if (tempProducts.Count() == 0)
+            {
+                tempProducts.Add(new Product(Int32.Parse(__temp[0]), __temp[1], Convert.ToDecimal(__temp[2])));
+                tempProducts[0].units = 1;
+            }
+            else
+            {
+                bool temp = true;
+                for (int i = 0; i < tempProducts.Count(); i++)
+                {
+                    if (tempProducts[i].ID == Int32.Parse(__temp[0]))
+                    {
+                        tempProducts[i].units++;
+                        temp = false;
+                        break;
+                    }
+                }
+
+                if (temp)
+                {
+                    tempProducts.Add(new Product(Int32.Parse(__temp[0]), __temp[1], Convert.ToDecimal(__temp[2])));
+                    tempProducts[tempProducts.Count() - 1].units = 1;
+                }
             }
 
-            for (int i = 0; i < RowCount(); i++)
+            listBox2.Items.Clear();
+
+            for (int i = 0; i < tempProducts.Count(); i++)
             {
-                listBox1.Items.Add(products[i].productName);
+                //itemtemp += tempProducts[i].ID + "\t" + tempProducts[i].productName + "\t" +
+                //tempProducts[i].productPrice + "\t" + tempProducts[i].units + "\n";
+                listBox2.Items.Add(tempProducts[i].ID + "\t" + tempProducts[i].productName + "\t" +
+                    tempProducts[i].productPrice + "\t" + tempProducts[i].units);
             }
+
+        }
+
+        private void btn_checkout_Click(object sender, EventArgs e)
+        {
+            listBox2.Items.Clear();
+            tempProducts.Clear();
+            Frm_Product frm = new Frm_Product();
+            frm.Show();
         }
     }
 }

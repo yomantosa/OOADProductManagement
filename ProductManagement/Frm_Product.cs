@@ -108,5 +108,11 @@ namespace ProductManagement
         {
 
         }
+
+        private void btn_order_Click(object sender, EventArgs e)
+        {
+            Frm_Order frm = new Frm_Order();
+            frm.Show();
+        }
     }
 }
