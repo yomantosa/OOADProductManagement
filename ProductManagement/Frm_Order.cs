@@ -20,11 +20,11 @@ namespace ProductManagement
 
         private SqlConnection productCon;
         private SqlConnection orderCon;
-
         private SqlCommand cmd;
-
         private List<Product> products = new List<Product>();
         private List<Product> tempProducts = new List<Product>();
+        
+
         public int RowCount()
         {
             string stmt = @"SELECT COUNT(*) FROM Product";
@@ -40,17 +40,13 @@ namespace ProductManagement
             }
             return count;
         }
-        // using for loop add prod into products oduct
-        
 
         private void Frm_Order_Load(object sender, EventArgs e)
         {
             ReadingRow();
         }
 
-        
-
-        private void ReadingRow(){
+        public void ReadingRow(){
             
             Product prod = null;//obj null
             using (productCon = new SqlConnection("Data Source=LAPTOP-C1548M6R\\SQLEXPRESS;Initial Catalog=Product;Integrated Security=True"))
@@ -67,15 +63,12 @@ namespace ProductManagement
                 {
                     listBox1.Items.Add(products[i].ID + "\t" + products[i].productName + "\t" + products[i].productPrice);
                 }
-
             }
         }
 
         private void btn_addToCart_Click(object sender, EventArgs e)
         {
-            
             string[] __temp = listBox1.SelectedItem.ToString().Split('\t');
-            
 
             if (tempProducts.Count() == 0)
             {
@@ -111,15 +104,20 @@ namespace ProductManagement
                 listBox2.Items.Add(tempProducts[i].ID + "\t" + tempProducts[i].productName + "\t" +
                     tempProducts[i].productPrice + "\t" + tempProducts[i].units);
             }
-
         }
+
+
 
         private void btn_checkout_Click(object sender, EventArgs e)
         {
-            listBox2.Items.Clear();
-            tempProducts.Clear();
-            Frm_Product frm = new Frm_Product();
+            // Show new Reciept Form in Checkout Button
+            Frm_Receipt frm = new Frm_Receipt();
+            foreach (var item in listBox2.Items)
+            {
+                frm.orderLst.Add(item.ToString());
+            }
             frm.Show();
+            this.Hide();
         }
     }
 }

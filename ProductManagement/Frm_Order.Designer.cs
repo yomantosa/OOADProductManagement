@@ -71,7 +71,7 @@ namespace ProductManagement
             // 
             // btn_addToCart
             // 
-            this.btn_addToCart.Location = new System.Drawing.Point(326, 119);
+            this.btn_addToCart.Location = new System.Drawing.Point(629, 357);
             this.btn_addToCart.Name = "btn_addToCart";
             this.btn_addToCart.Size = new System.Drawing.Size(75, 23);
             this.btn_addToCart.TabIndex = 3;
@@ -82,7 +82,7 @@ namespace ProductManagement
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(578, 41);
+            this.label2.Location = new System.Drawing.Point(528, 38);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(26, 13);
             this.label2.TabIndex = 5;
@@ -90,7 +90,7 @@ namespace ProductManagement
             // 
             // btn_checkout
             // 
-            this.btn_checkout.Location = new System.Drawing.Point(528, 370);
+            this.btn_checkout.Location = new System.Drawing.Point(710, 357);
             this.btn_checkout.Name = "btn_checkout";
             this.btn_checkout.Size = new System.Drawing.Size(75, 23);
             this.btn_checkout.TabIndex = 6;
@@ -101,16 +101,16 @@ namespace ProductManagement
             // listBox2
             // 
             this.listBox2.FormattingEnabled = true;
-            this.listBox2.Location = new System.Drawing.Point(420, 74);
+            this.listBox2.Location = new System.Drawing.Point(319, 74);
             this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(674, 277);
+            this.listBox2.Size = new System.Drawing.Size(466, 277);
             this.listBox2.TabIndex = 7;
             // 
             // Frm_Order
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1189, 450);
+            this.ClientSize = new System.Drawing.Size(809, 413);
             this.Controls.Add(this.listBox2);
             this.Controls.Add(this.btn_checkout);
             this.Controls.Add(this.label2);
@@ -136,6 +136,6 @@ namespace ProductManagement
         private System.Windows.Forms.Button btn_addToCart;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btn_checkout;
-        private System.Windows.Forms.ListBox listBox2;
+        public System.Windows.Forms.ListBox listBox2;
     }
 }

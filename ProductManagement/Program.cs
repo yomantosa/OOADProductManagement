@@ -16,7 +16,7 @@ namespace ProductManagement
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Frm_Product());
+            Application.Run(new Frm_Order());
         }
     }
 }
